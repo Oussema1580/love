@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Dancing Script', cursive, Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 40px 20px;
+            font-size: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        header p {
+            animation: slideIn 1.5s ease-in-out;
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            margin: 40px auto;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .event {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 30px 0;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        .event p {
+            font-size: 20px;
+        }
+        .event.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .media-placeholder {
+            background: #ddd;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #666;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .media-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Love Letter Section */
+        .love-letter {
+            margin: 40px 20px;
+        }
+
+        #love-message {
+            font-size: 20px;
+            color: #ff4d4d;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        #love-message.visible {
+            opacity: 1;
+        }
+
+        /* Button Styles */
+        button {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #cc0000;
+            transform: scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            color: #ff4d4d;
+            font-size: 24px;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(20deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script>
+        // JavaScript for Animations and Interactions
+        function revealMessage() {
+            const message = document.getElementById("love-message");
+            message.innerText = "You are the best thing that ever happened to me. I wish you all the best, habibi! Always & Forever ❤️";
+            message.classList.add("visible");
+        }
+
+        // Scroll Animation for Timeline Events
+        document.addEventListener("scroll", () => {
+            const events = document.querySelectorAll(".event");
+            events.forEach(event => {
+                const eventTop = event.getBoundingClientRect().top;
+                if (eventTop < window.innerHeight - 100) {
+                    event.classList.add("visible");
+                }
+            });
+        });
+
+        // Add Floating Hearts
+        function createHearts() {
+            const header = document.querySelector("header");
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤️";
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                header.appendChild(heart);
+            }
+        }
+
+        // Music Controls
+        function toggleMusic() {
+            const audio = document.getElementById("background-music");
+            const musicButton = document.getElementById("music-button");
+
+            if (audio.paused) {
+                audio.play();
+                musicButton.innerText = "🔊 Unmute Music";
+            } else {
+                audio.pause();
+                musicButton.innerText = "🔇 Mute Music";
+            }
+        }
+
+        window.onload = () => {
+    createHearts();
+    
+    const audio = document.getElementById("background-music");
+    const musicButton = document.getElementById("music-button");
+
+    document.addEventListener("click", () => {
+        if (audio.paused) {
+            audio.play().catch(error => console.log("Autoplay blocked:", error));
+        }
+    }, { once: true });
+};
+    </script>
+</head>
+<body>
+    <audio id="background-music" loop>
+        <source src="photograph.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <header>
+        <h1>Our Love Story ❤️</h1>
+        <p>A journey through our most beautiful moments</p>
+    </header>
+    
+    <section class="timeline">
+        <div class="event">
+            <h2>🖤 First Meeting ❤️</h2>
+            <p> From the moment I first saw you, I knew you were someone extraordinary. 
+                Your smile lit up the room, and your laughter was like music to my ears. 
+                You have this incredible way of making everyone around you feel special, but to me, you are everything. 
+                Your kindness, your strength, your beauty—inside and out—leave me in awe every single day. 
+                I love the way you care for others and the way you make me feel like I'm the most important person in the world. 
+                You are my best friend, my confidant, and my greatest love. I cherish every moment with you, and I thank the universe every day for bringing you into my life. 
+                You are my heart, my soul, and my forever. <br>
+                Dhahaliiit waliii n7ebiiik aa 5raa words that changed my life, A dream come true.
+                I love you more than words could ever express, and I promise to spend the rest of my life showing you just how much you mean to me. ❤️</p>
+            <div class="media-placeholder">
+                <img src="img/photograph.jpg" alt="Our First Meeting">
+            </div>
+        </div>
+        <div class="event">
+            <h2>Our Fake Wedding</h2>
+            <p>This was the day we had our "fake wedding" with friends. 
+            I tried to give you a ring, and though it wasn't real, my love for you was and always will be. One day, I promise to give you a real ring and make you my forever. 💍❤️</p>
+            <div class="media-placeholder">
+                <img src="img/wedding.jpg" alt="wedding">
+            </div>
+        </div>
+        <div class="event">
+            <h2>Anniversary</h2>
+            <p>My dearest love,<br>
+                Every day with you feels like a celebration. 
+                On this special day, I want you to know how much you mean to me. You are my everything, and I cherish every moment we share.
+                Here's to many more years of love, laughter, and unforgettable memories. <br> I love you endlessly. 🖤❤️</p>
+            <div class="media-placeholder">
+                <img src="img/anniv.jpg" alt="Our Anniversary">
+            </div>
+        </div>
+    </section>
+    
+    <section class="love-letter">
+        <h2>My Love Letter to You</h2>
+        <p id="love-message">Click the button below to reveal your special message. 💌</p>
+        <button onclick="revealMessage()">Reveal</button>
+    </section>
+</body>
+</html>
